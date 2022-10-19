@@ -1,0 +1,35 @@
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:MauiMVVM.Model"
+             xmlns:viewmodel ="clr-namespace:MauiMVVM.ViewModel"
+             xmlns:con="clr-namespace:MauiMVVM.Controls"
+             x:Class="MauiMVVM.Controls.FilterPanel"
+             x:DataType="viewmodel:DataItemListViewModel"
+             ColumnDefinitions="*,Auto">
+    <ScrollView Grid.Column="0">
+        <VerticalStackLayout>
+            <SearchBar x:Name="SearchBar" 
+                       Text="{Binding SearchText}" 
+                       SearchCommand="{Binding SearchDataItemsComand}"/>
+
+            <CollectionView ItemsSource="{Binding FiltredFilds}"
+                        SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="viewmodel:GroupItem">
+                        <VerticalStackLayout
+                            >
+                        <con:ExpandElement
+                        GroupExpandItem="{Binding .}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</Grid>
+
+
